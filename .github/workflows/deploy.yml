@@ -12,7 +12,7 @@ jobs:
     - name: Rsync Deployments Action
       uses: Burnett01/rsync-deployments@5.1
       with:
-          path: ./
+          path: ./*
           switches: -avz --delete --exclude ".git*"
           remote_path: ${{ secrets.DEPLOY_PATH }}
           remote_host: ${{ secrets.DEPLOY_IP }}
