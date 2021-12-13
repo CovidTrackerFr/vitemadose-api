@@ -1,4 +1,3 @@
-
 <?php
 
 #Useful functions
@@ -83,17 +82,16 @@ function check_get_parameters($department_list, $platform_list, $vaccine_list, $
 function filter_dep_centers($main_json, $selected_department){
 
     foreach (array_merge($main_json['centres_disponibles'],$main_json['centres_indisponibles']) as $centre){
-        if ($centre["departement"]==$selected_department){
-            $centre["location"]["address"]=$centre["metadata"]["address"];
-            $centre["business_hours"]=$centre["metadata"]["business_hours"];
-            unset($centre["metadata"]);
-            unset($centre["erreur"]);
-            unset($centre["last_scan_with_availabilities"]);
-            unset($centre["request_counts"]);
-            unset($centre["appointment_count"]);
-            unset($centre["prochain_rdv"]);
-            $filtered_data[]=$centre;
-        }
+        $centre["location"]["address"]=$centre["metadata"]["address"];
+        $centre["business_hours"]=$centre["metadata"]["business_hours"];
+        unset($centre["metadata"]);
+        unset($centre["erreur"]);
+        unset($centre["last_scan_with_availabilities"]);
+        unset($centre["request_counts"]);
+        unset($centre["appointment_count"]);
+        unset($centre["prochain_rdv"]);
+        $filtered_data[]=$centre;
+        
     }
 
     return isset($filtered_data) ? $filtered_data : [];
@@ -173,7 +171,6 @@ function filter_motive($centers, $vaccination_motive, $minCreneauxCount){
 
 header('Content-type: application/json');
 
-$main_json = json_decode(file_get_contents("http://vitemadose.gitlab.io/vitemadose/info_centres.json"),true);
 
 $platform_list=array("doctolib", "keldoc", "maiia", "mesoigner", "avecmondoc", "bimedoc", "mapharma","ordoclic","valwin");
 $department_list=array("01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","971","972","973","974","975","976","984","986","987","988","2A","2B");
@@ -185,6 +182,7 @@ $activeFilters = check_get_parameters($department_list, $platform_list, $vaccine
 
 #On récupère les créneaux pour le département en question.
 $creneaux_json=json_decode(file_get_contents("https://vitemadose.gitlab.io/vitemadose/{$_GET['department']}/creneaux-quotidiens.json"),true);
+$main_json = json_decode(file_get_contents("http://vitemadose.gitlab.io/vitemadose/{$_GET['department']}.json"),true);
 
 $data=filter_dep_centers($main_json, $_GET["department"]);
 
