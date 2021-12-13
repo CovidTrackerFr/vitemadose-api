@@ -1,3 +1,4 @@
+
 <?php
 
 #Useful functions
@@ -83,6 +84,14 @@ function filter_dep_centers($main_json, $selected_department){
 
     foreach (array_merge($main_json['centres_disponibles'],$main_json['centres_indisponibles']) as $centre){
         if ($centre["departement"]==$selected_department){
+            $centre["location"]["address"]=$centre["metadata"]["address"];
+            $centre["business_hours"]=$centre["metadata"]["business_hours"];
+            unset($centre["metadata"]);
+            unset($centre["erreur"]);
+            unset($centre["last_scan_with_availabilities"]);
+            unset($centre["request_counts"]);
+            unset($centre["appointment_count"]);
+            unset($centre["prochain_rdv"]);
             $filtered_data[]=$centre;
         }
     }
