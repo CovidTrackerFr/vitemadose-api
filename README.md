@@ -23,6 +23,7 @@ L'API propose un certain nombre de paramètres. Le seul paramètre OBLIGATOIRE e
 | maxDate | renvoie uniquement les centres ayant des dispos avant la date renseignée | YYY-mm-dd | non (renvoie alors l'ensemble des disponibilités scrapées)
 | vaccinationMotive | renvoie uniquement les centres ayant des dispos pour le motif renseigné | string | non (renvoie alors l'ensemble des centres ayant minCreneauxCount pour le motigf "all")
 | minCreneauxCount | renvoie les centres ayant au moins minCreneauxCountdispos pour le motif renseigné (motif "all" si aucun motif renseigné)| integer | non (renvoie alors les centres disponibles ou indisponibles)
+
 - "vaccine[]" - valeurs acceptées
 ```
 pfizer-biontech
@@ -43,6 +44,12 @@ bimedoc
 mapharma
 ordoclic
 valwin
+```
+
+- "vaccinationMotive" - valeurs acceptées
+```
+first_or_second_dose
+third_dose
 ```
 
 ## Exemples
