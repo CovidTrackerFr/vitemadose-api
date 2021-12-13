@@ -1,4 +1,3 @@
-
 <?php
 
 #Useful functions
@@ -194,6 +193,7 @@ if ($activeFilters["isMotiveFilter"]=="true" or $activeFilters["isMinCreneauxFil
     $data=filter_motive($data, isset($_GET["vaccinationMotive"])?$_GET["vaccinationMotive"]:"all", isset($_GET["minCreneauxCount"]) ?$_GET["minCreneauxCount"] :0);
 }
 $filters=array("department"=>$_GET["department"],"maxDate"=>isset($_GET["maxDate"]) ?$_GET["maxDate"]:null,"selected_platforms" => isset($_GET["platform"]) ?array_map("strtolower",$_GET["platform"]) :array_map("strtolower",$platform_list), "selected_vaccines"=>isset($_GET["vaccine"]) ?array_map("strtolower",$_GET["vaccine"]) :array_map("strtolower",$vaccine_list), "selected_vaccination_motive" => isset($_GET["vaccinationMotive"]) ?Array($_GET["vaccinationMotive"]) : $vaccination_motives);
+$api["last_updated"]=$main_json["last_updated"];
 $api["centers_count"]=count($data);
 $api["filters"]=$filters;
 $api["centres"]=$data;
