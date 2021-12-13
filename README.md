@@ -1,6 +1,6 @@
 # Vitemadose API
 ## _Documentation_
-URL = https://pi.vitemado.se
+URL = https://api.vitemado.se
 L'API Vitemadose permet d'accéder aux derniers créneaux présentés sur le site http://vitemadose.covidtracker.fr
 Il s'agit d'un API json.
 
